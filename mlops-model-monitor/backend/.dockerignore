@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+*.db
+app/artifacts/
+.env
+.pytest_cache/
+tests/
+requirements-dev.txt
