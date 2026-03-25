@@ -1,0 +1,27 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      # Origin allowed by CORS = where the browser loads the dashboard from.
+      CLIENT_URL: http://localhost:8080
+      # Persist the prediction log on a named volume (absolute path = 4 slashes).
+      DATABASE_URL: sqlite:////data/monitor.db
+    volumes:
+      - monitor-data:/data
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        # Baked into the bundle at build time; the browser (on the host) reaches
+        # the backend via its published port.
+        VITE_API_URL: http://localhost:8000
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+
+volumes:
+  monitor-data:
