@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    @apply bg-base text-ink font-sans antialiased;
+    background-image: radial-gradient(
+      1200px 600px at 80% -10%,
+      rgba(52, 214, 195, 0.06),
+      transparent 60%
+    );
+  }
+  /* Visible keyboard focus everywhere. */
+  :focus-visible {
+    @apply outline-none ring-2 ring-signal/70 ring-offset-2 ring-offset-base;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply font-mono text-[11px] uppercase tracking-[0.18em] text-faint;
+  }
+  .panel {
+    @apply rounded-lg border border-line bg-surface shadow-panel;
+  }
+}
+
+/* Slim console-style scrollbar. */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e2d49;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
